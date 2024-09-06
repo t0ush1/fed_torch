@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package fed_package;
+
+service GradService {
+    rpc grad_descent (grad_request) returns (grad_reply) {}
+}
+
+service DatasizeService {
+    rpc get_datasize (datasize_request) returns (datasize_reply) {}
+}
+
+service StopService {
+    rpc stop (stop_request) returns (stop_reply) {}
+}
+
+message grad_request {
+    repeated bytes server_grad_para_data=1;
+    repeated string server_grad_para_type=2;
+    repeated string server_grad_para_shape=3;
+}
+
+message grad_reply {
+    repeated bytes client_grad_para_data=1;
+    repeated string client_grad_para_type=2;
+    repeated string client_grad_para_shape=3;
+}
+
+message datasize_request {
+    int32 size=1;
+}
+
+message datasize_reply {
+    int32 size=1;
+}
+
+message stop_request {
+    string message=1;
+}
+
+message stop_reply {
+    string message=1;
+}
